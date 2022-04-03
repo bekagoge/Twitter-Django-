@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    
+
+<h1>TWEETS!!!</h1>
+<ul>
+{% for tweet in object_list %}
+    <li> <a href="{% url 'PostDetails' tweet.pk %}">
+    {{tweet.tweetTitle}}</a> - 
+    {{tweet.tweetAuthor.first_name}} 
+    {{tweet.tweetAuthor.last_name}} - 
+    {{tweet.tweetDate}} -
+    <small>
+        <a href="{% url 'update_tweet' tweet.pk %}">Edit Tweet</a>
+        <a href="{% url 'delete_tweet' tweet.pk %}">Delete Tweet</a>
+    
+    </small>
+    <br/>
+    {{tweet.tweetText}}</li>
+    
+
+{% endfor %}
+
+</ul>
+
+
+{% endblock %}
+

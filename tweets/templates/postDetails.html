@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% block title %}
+{{tweet.tweetTitleTag}}
+{% endblock %}
+
+{% block content %}
+<h1>tweet.tweetTitle</h1>
+<small>
+    By: 
+    {{tweet.tweetAuthor.first_name}} 
+    {{tweet.tweetAuthor.last_name}} - 
+    {{tweet.tweetDate}} -
+    <a href="{% url 'update_tweet' tweet.pk %}">Edit Tweet</a>
+    <a href="{% url 'delete_tweet' tweet.pk %}">Delete Tweet</a>
+    <hr>
+    <br/>
+    {{tweet.tweetText}}
+</small>
+<br/>
+<br/>
+
+<a href="{% url 'HomePage'%}" class="btn btn-dark">Back Button</a>
+
+
+{% endblock %}

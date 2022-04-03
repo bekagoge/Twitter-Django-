@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Delete Tweet
+{% endblock %}
+
+{% block content %}
+    
+
+<h1>Delete Tweet</h1>
+<br/>
+<h3>Delete: {{tweet.tweetTitle}}</h3>
+<br/>
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %}
+        <small>
+            <strong>Make sure you want to delete tweet!</strong><br/><br/>
+        </small>
+        <button class="btn btn-outline-info">Delete Tweet</button>
+
+    </form>
+
+</div>
+
+
+{% endblock %}
