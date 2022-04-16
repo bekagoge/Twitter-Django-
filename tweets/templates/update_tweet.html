@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Edit Tweet
+{% endblock %}
+
+{% block content %}
+    
+
+{% if user.is_authenticated %}
+    <h1>Update Tweet</h1>
+    <br/>
+
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-outline-info">Update</button>
+
+        </form>
+
+    </div>
+{% else %}
+Pls log in 
+
+{% endif %}
+
+{% endblock %}

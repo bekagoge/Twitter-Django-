@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    
+
+<h1>TWEETS!!!</h1>
+<ul>
+{% for tweet in object_list %}
+    <li> <a href="{% url 'PostDetails' tweet.pk %}">
+    {{tweet.tweetTitle}}</a> 
+    - <a href="{% url 'category' tweet.tweetCategory|slugify %}">{{tweet.tweetCategory}}</a> -
+    {{tweet.tweetAuthor.first_name}} 
+    {{tweet.tweetAuthor.last_name}} - 
+    {{tweet.tweetDate}} 
+
+    {% if user.is_authenticated %}
+        <small>
+            - <a href="{% url 'update_tweet' tweet.pk %}">Edit Tweet</a>
+            <a href="{% url 'delete_tweet' tweet.pk %}">Delete Tweet</a>
+        
+        </small>
+    {% endif %}
+    <br/>
+    {{tweet.tweetText|slice:":100"|safe}}</li>
+    
+
+{% endfor %}
+
+</ul>
+
+
+
+{% endblock %}
+

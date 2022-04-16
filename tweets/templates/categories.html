@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% if category_tweets %}
+    
+<h1>{{ category }}</h1>
+
+<ul>
+{% for tweet in category_tweets %}
+
+
+
+    <li> <a href="{% url 'PostDetails' tweet.pk %}">
+    {{tweet.tweetTitle}}</a> 
+    -{{tweet.tweetAuthor.first_name}} 
+    {{tweet.tweetAuthor.last_name}} - 
+    {{tweet.tweetDate}} 
+
+    {% if user.is_authenticated %}
+        <small>
+            - <a href="{% url 'update_tweet' tweet.pk %}">Edit Tweet</a>
+            <a href="{% url 'delete_tweet' tweet.pk %}">Delete Tweet</a>
+        
+        </small>
+    {% endif %}
+    <br/>
+    {{tweet.tweetText|slice:":100"|safe}}</li>
+    
+</ul>
+
+{% endfor %}
+
+
+
+{% else %}
+    <h2>There is no tweet with that category...</h2>
+
+{% endif %}
+
+
+{% endblock %}
